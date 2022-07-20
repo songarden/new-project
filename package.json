@@ -1,0 +1,34 @@
+{
+  "name": "new-project",
+  "version": "1.0.0",
+  "description": "CNU 17th's new-project",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/songarden/new-project.git"
+  },
+  "keywords": [
+    "electronic's",
+    "locker",
+    "application"
+  ],
+  "author": "Jung Won, Gi Hun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/songarden/new-project/issues"
+  },
+  "homepage": "https://github.com/songarden/new-project#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/node": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "nodemon": "^2.0.18"
+  }
+}
