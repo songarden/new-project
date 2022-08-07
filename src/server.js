@@ -15,6 +15,7 @@ app.set("views", process.cwd() + "/src/views");
 
 
 app.use(loggermiddleware);
+app.use(express.urlencoded({ extended: true}));
 //1 get
 //app.get("/",() => console.log("someone is in my server"));
 //or  const Home = () => console.log("someone is in my server");

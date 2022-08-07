@@ -5,7 +5,8 @@ mixin lockers(lockers)
         ul
             h5
                 if lockers.available
-                    a.green(href=`/locker/${lockers.id}`) 신청하기 &rarr;
-                    //누군가가 누르면 available false로 변경
+                    a(href=`/locker/${lockers.id}`) 신청하기 &rarr;
+                    //- 누군가가 누르면 available false로 변경, 신청하시겠습니까 할시에
+                    
                 else
                     h5 사용중

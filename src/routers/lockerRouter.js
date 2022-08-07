@@ -1,11 +1,12 @@
 import express from "express";
-import {locker, seeLocker,seePassword} from "../controllers/lockerController"
+import {getLock,loginLock,seeLocker,ReturnorApplicateLocker,seePassword} from "../controllers/lockerController"
 
 const lockerRouter = express.Router();
 
 
-lockerRouter.get("/", locker);
+lockerRouter.route("/").get(getLock).post(loginLock);
 lockerRouter.get("/:id(\\d+)", seeLocker);
+lockerRouter.post("/:id(\\d+)", ReturnorApplicateLocker);
 lockerRouter.get("/:id(\\d+)/password", seePassword);
 
 
