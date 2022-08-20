@@ -5,7 +5,7 @@ import userRouter from "./routers/userRouter";
 import lockerRouter from "./routers/lockerRouter";
 //expressjs.com 홈페이지에서 express()에 대한 정보를 확인 가능
 
-const PORT = 4000;
+
 const app = express();
 //이 밑으로 request에 대한 response 동작을 수행하는 코드를 작성
 const loggermiddleware = morgan("dev");//설치형 자동 middleware 
@@ -76,12 +76,7 @@ app.use("/user", userRouter);
 // };
 // app.get("/protected", handleProtected);
 
+export default app;
 
 
 
-
-const handleListening = () => console.log(`Server listening on port http://localhost:${PORT}`);
-//큰따옴표나 작은따옴표가 아닌 벡틱이라는 문구로 ESC 밑에 있는 걸로 묶어야됨 
-
-//app.listen(4000, () => console.log("Server listening on port 4000"));
-app.listen(PORT, handleListening); //위의 방식과 동일함
