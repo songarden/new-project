@@ -1,10 +1,10 @@
 extends base
 
 block content
-        a(href=`${lockers.id}/password`) 비밀번호 확인하기 &rarr;
+        a(href=`${locker.id}/password`) 비밀번호 확인하기 &rarr;
         h4 해지하기버튼, period 시각화, 갱신버튼
         form(method="POST")
-                if lockers.available === false
+                if locker.available === false
                         input(value = "신청하기", type="submit")
                 else
                         input(value = "해지하기", type="submit")                           

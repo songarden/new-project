@@ -1,0 +1,12 @@
+extends base.pug
+
+block content
+    if errorMessage
+        span=errorMessage 
+    form(method="POST")
+        input(placeholder="이름", required, type="text", name="name")
+        input(placeholder="학번", required, type="number", name="schoolID")
+        input(placeholder="비밀번호", required, type="number", name="password")
+        input(placeholder="비밀번호 확인", required, type="number", name="passwordAgain")
+        input(placeholder="핸드폰번호", required, type="number", name="phoneNumber")
+        input(type="submit", value="회원가입하기")

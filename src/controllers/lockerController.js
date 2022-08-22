@@ -1,27 +1,26 @@
-import Locker from "../models/Locker"
+import Locker from "../models/Locker";
 
-export const login = (req, res) => {
+export const login = async (req, res) => {
     //만약에 로그인이 성공할 시 조건문 삽입 예정
-    Locker.find({}, (error, lockers) => {
-        return res.render("locker", {pageTitle : "Lockers", lockers: [] });
-    });
+    const lockers = await Locker.find({});
     console.log(req.body);
-    
-}
+    return res.render("locker", {pagetitle : "Lockers", lockers });
+}//로그인 시에 locker보기 용
 
 export const getLock = (req, res) => {
     
-    return res.render("locker", {pageTitle : "Lockers"});
-} //login시
+    return res.render("locker", {pagetitle : "Lockers", lockers :[]});
+} //미 로그인 시에 locker 미리보기용
 
-export const loginLock = (req, res) => {
-    return res.render("locker", {pageTitle : "Lockers"});
-} //미리보기 view
-
-export const seeLocker = (req, res) => {
+export const seeLocker = async(req, res) => {
     const { id } = req.params;
-
-    return res.render("seelocker", {pageTitle : `No. Locker`});
+    const locker = await Locker.findById(id);
+    if(!locker){
+        return res.render("404",{pagetitle: "Locker not found."});
+    }
+    return res.render("seelocker", {pageTitle : `No. #{locker.number}Locker`, locker});
+    
+    
 }
  
 export const ReturnorApplicateLocker = (req, res) => {

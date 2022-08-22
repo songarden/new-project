@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import globalRouter from "./routers/globalRouter";
+import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import lockerRouter from "./routers/lockerRouter";
 //expressjs.com 홈페이지에서 express()에 대한 정보를 확인 가능
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true}));
 //     //res.send("문구");는 문구를 응답으로 출력함
 //  }
 
-app.use("/", globalRouter);
+app.use("/", rootRouter);
 app.use("/locker", lockerRouter);
 app.use("/user", userRouter);
 

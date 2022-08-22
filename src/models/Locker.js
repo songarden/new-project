@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const lockerSchema = new mongoose.Schema({
     number: String,
     available: Boolean,
-    id : Number,
     meta:{
         password : Number,
     }
@@ -20,5 +19,5 @@ const lockerSchema = new mongoose.Schema({
 //     ]
 // }
 
-const lockerModel = mongoose.model("locker", lockerSchema);
-export default lockerModel
+const Locker = mongoose.model("Locker", lockerSchema);
+export default Locker;

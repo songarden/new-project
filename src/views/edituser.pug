@@ -1,0 +1,10 @@
+extend base.pug
+
+block content
+    h4 회원정보 수정
+    form(method="POST")
+        input(placeholder="이름", required, type="text",value=user.name name="name")
+        input(placeholder="학번", required, type="number",value=user.schoolID name="schoolID", maxlength=9)
+        input(placeholder="비밀번호", required, type="number",value=user.password name="password")
+        input(placeholder="핸드폰번호", required, type="number",value=user.phoneNumber, name="phoneNumber", maxlength=11)
+        input(type="submit", value="회원가입하기")

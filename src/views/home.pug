@@ -4,7 +4,8 @@ block content
     h5 아이디가 없으세요?; 
     a(href="join") 회원가입하기 &rarr;
     form(method="POST")
-        input(name="ID", placeholder="ID", value = "학번9자리",required,type="number")
+        input(placeholder="학번", required, type="text", name="schoolID")
+        input(placeholder="비밀번호", required, type="number", name="password")
         input(value = "로그인", type="submit")
     a(href="locker") 사물함 신청 페이지로 가기 &rarr;
 

@@ -6,7 +6,11 @@ html(lang="ko")
     body
         header
             h1 ⌛️CNU Electronic Engineering Locker Application Program⏳
-            h3 This is #{pageTitle} page 
+            h3 This is #{pagetitle} page
+            nav
+                ul
+                    li
+                        a(href="/locker") Locker 
         main
             block content
     include partials/footer.pug

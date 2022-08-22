@@ -1,8 +1,8 @@
 import express from "express";
-import {edit,remove} from "../controllers/userController";
+import {getEdit,postEdit,remove} from "../controllers/userController";
 const userRouter = express.Router();
 
-userRouter.get("/edit",edit);
+userRouter.route("/edit").get(getEdit).post(postEdit);
 userRouter.get("/delete", remove);
 
 export default userRouter;
