@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import session from "express-session";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import lockerRouter from "./routers/lockerRouter";
@@ -16,6 +17,21 @@ app.set("views", process.cwd() + "/src/views");
 
 app.use(loggermiddleware);
 app.use(express.urlencoded({ extended: true}));
+
+app.use(
+    session({
+        secret:"Hello!",
+        resave :true,
+        saveUninitialized: true,
+    })
+);
+
+app.use((req,res,next) => {
+    req.sessionStore.all((error,sessions) =>{
+        console.log(sessions);
+        next();
+    });
+});
 //1 get
 //app.get("/",() => console.log("someone is in my server"));
 //or  const Home = () => console.log("someone is in my server");

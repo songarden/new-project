@@ -5,8 +5,13 @@ block content
         span=errorMessage 
     form(method="POST")
         input(placeholder="이름", required, type="text", name="name")
-        input(placeholder="학번", required, type="number", name="schoolID")
-        input(placeholder="비밀번호", required, type="number", name="password")
-        input(placeholder="비밀번호 확인", required, type="number", name="passwordAgain")
-        input(placeholder="핸드폰번호", required, type="number", name="phoneNumber")
+        input(placeholder="학번", required, type="number", name="schoolID", maxlength=9, oninput="numberMaxLength(this)")
+        input(placeholder="비밀번호", required, type="password", name="password")
+        input(placeholder="비밀번호 확인", required, type="password", name="passwordAgain")
+        input(placeholder="핸드폰번호", required, type="number", name="phoneNumber",maxlength=11, oninput="numberMaxLength(this)")
         input(type="submit", value="회원가입하기")
+
+        hr
+        div
+            span 이미 아이디가 있나요?
+            a(href="/") Log in now &rarr;
