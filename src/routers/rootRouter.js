@@ -1,5 +1,5 @@
 import express from "express";
-import { login } from "../controllers/lockerController";
+import { login } from "../controllers/userController";
 import { home, join, joined } from "../controllers/rootController";
 //{}안에 import를 하게되면 임의로 이름을 변경할 수 없다
 const rootRouter = express.Router();

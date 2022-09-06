@@ -3,27 +3,7 @@ import User from "../models/User";
 import { home } from "./rootcontroller";
 import bcrypt from "bcrypt";
 
-export const login = async (req, res) => {
-    //만약에 로그인이 성공할 시 조건문 삽입 예정
-    const { schoolID, password} = req.body;
-    const user = await User.findOne({schoolID});
-    if(!user){
-        return res.status(400).render("home", {
-        pagetitle : "Home",
-        errorMessage : "존재하지 않는 학번입니다.",
-        });
-    }
-    const ok = await bcrypt.compare(password, user.password);
-    if(!ok){
-        return res.status(400).render("home", {
-            pagetitle : "Home",
-            errorMessage : "비밀번호가 틀렸습니다.",
-            });
-    }
-    const lockers = await Locker.find({});
-    console.log(req.body);
-    return res.render("locker", {pagetitle : "Lockers", lockers });
-}//로그인 시에 locker보기 용
+
 
 export const getLock = (req, res) => {
     

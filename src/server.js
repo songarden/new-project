@@ -4,6 +4,7 @@ import session from "express-session";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import lockerRouter from "./routers/lockerRouter";
+import { localsMiddleware } from "./middlewares";
 //expressjs.com 홈페이지에서 express()에 대한 정보를 확인 가능
 
 
@@ -26,12 +27,12 @@ app.use(
     })
 );
 
-app.use((req,res,next) => {
-    req.sessionStore.all((error,sessions) =>{
-        console.log(sessions);
-        next();
-    });
-});
+// app.use((req,res,next) => {
+//     req.sessionStore.all((error,sessions) =>{
+//         console.log(sessions);
+//         next();
+//     });
+// });
 //1 get
 //app.get("/",() => console.log("someone is in my server"));
 //or  const Home = () => console.log("someone is in my server");
@@ -43,7 +44,7 @@ app.use((req,res,next) => {
 //    // res.end()를 responce하여 로딩이 끝나고 응답을 함. 하지만 응답을 끝내기만 할 뿐 아무것도 출력 되지 않음
 //     //res.send("문구");는 문구를 응답으로 출력함
 //  }
-
+app.use(localsMiddleware);
 app.use("/", rootRouter);
 app.use("/locker", lockerRouter);
 app.use("/user", userRouter);
