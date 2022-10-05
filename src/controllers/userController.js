@@ -1,4 +1,5 @@
 import User from "../models/User";
+import fetch from "node-fetch";
 import Locker from "../models/Locker";
 import bcrypt from "bcrypt";
 
@@ -7,7 +8,7 @@ export const login = async (req, res) => {
     
     const { schoolID, password} = req.body;
     const user = await User.findOne({schoolID});
-    
+    const lockers = await Locker.find({});
     
     if(!user){
         return res.status(400).render("home", {
@@ -25,9 +26,13 @@ export const login = async (req, res) => {
 
     req.session.loggedOn = true;
     req.session.user = user;
-    const lockers = await Locker.find({});
+    req.session.save(function(err) {
+        if(err) {
+            return res.render("/500", { pagetitle: "500 loginServerError"});
+        }else return res.render("locker", {pagetitle : "Lockers", lockers });
+    })
     //console.log(req.body);
-    return await res.render("locker", {pagetitle : "Lockers", lockers });
+    
 }//로그인 시에 locker보기 용
 
 export const getEdit = (req,res) => res.send("getEdit");
@@ -57,4 +62,40 @@ export const postEdit = (req,res) => res.send("postEdit");
 // }
 export const remove = (req,res) => res.send("Remove User");
 export const comment = (req,res) => res.send("comment page");
+
+export const startGithubLogin = (req,res) => {
+    console.log(process.env.GH_CLIENT);
+    const baseUrl = 'https://github.com/login/oauth/authorize';
+    const config = {
+        client_id: process.env.GH_CLIENT,
+        allow_signup:false,
+        scope:"read:user user:email",
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${baseUrl}?${params}`;
+    return res.redirect(finalUrl)
+};
+
+export const finishGithubLogin = async(req,res) => {
+    const baseUrl = "http://github.com/login/oauth/access_token";
+    const config = {
+        client_id: process.env.GH_CLIENT,
+        client_secret: process.env.GH_SECRET,
+        code: req.query.code
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${baseUrl}?${params}`;
+    const data = await fetch(finalUrl, {
+        method:"POST",
+        headers:{
+            Accept: "application/json",
+        },
+    });
+    const json = await data.json();
+    console.log(json);
+    console.log(config);
+}
+// export const logout = (req,res) => async{
+//     req.session.destroy(function(err)) {}
+// }
 

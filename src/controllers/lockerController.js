@@ -5,9 +5,9 @@ import bcrypt from "bcrypt";
 
 
 
-export const getLock = (req, res) => {
-    
-    return res.render("locker", {pagetitle : "Lockers", lockers :[]});
+export const getLock = async(req, res) => {
+    const lockers = await Locker.find({});
+    return res.render("locker", {pagetitle : "Lockers", lockers});
 } //미 로그인 시에 locker 미리보기용
 
 export const seeLocker = async(req, res) => {
@@ -27,17 +27,17 @@ export const seeLocker = async(req, res) => {
     
 }
  
-export const ReturnorApplicateLocker = (req, res) => {
+export const ReturnorApplicateLocker = async(req, res) => {
     const { id } = req.params;
+    const lockers = await Locker.find({});
     
-    
-    return res.redirect("/locker");
+    return res.render("locker", {pagetitle : "Lockers", lockers});
 }
 
 export const seePassword = (req, res) => {
     const { id } = req.params;
 
-    return res.render("seepassword", {pageTitle : `No. Locker's Password`});
+    return res.render("seepassword", {pagetitle : `No. Locker's Password`});
 }
 
 export const newlocker = (req,res) => {

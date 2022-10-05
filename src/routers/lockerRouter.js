@@ -10,6 +10,5 @@ lockerRouter.get("/:id([0-9a-f]{24})", seeLocker);
 lockerRouter.post("/:id([0-9a-f]{24})", ReturnorApplicateLocker);
 lockerRouter.get("/:id([0-9a-f]{24})/password", seePassword);
 
-
 export default lockerRouter;
 
